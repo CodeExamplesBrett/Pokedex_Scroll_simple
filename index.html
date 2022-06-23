@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brett_Pokedex</title>
+    <script src="script.js"></script>
+
+    <!-- Bootstrap files -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+
+</head>
+
+<body onload="loadPokemons()">
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-light fixed-top nav-bg">
+        <div class="container-fluid respon_title">
+            <a class="navbar-brand nav-title">Pokedex</a>
+            <form class="d-flex"  onsubmit="filterPokemons(event)">
+                 <!--<input class="form-control me-2" type="text" id="search" onchange="filterPokemons()"
+                    placeholder="Search"> -->
+                <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
+                <!-- class="form-control me-2" type="search" placeholder="Search" aria-label="Search" -->
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Footer Navbar -->
+    <nav class="navbar navbar-light fixed-top nav-bg footer">
+        
+            
+            <button  id="next" class="btn btn-outline-secondary footer-button" onclick="loadPokemons()">Load more Pokemons</button>
+
+    
+    </nav>
+
+
+    <div id="all">
+        <div class="allPokemons" id="allPokemons"></div>
+        
+
+    </div>
+
+
+
+
+    <!--   --------- Big-card (selected) ---------      -->
+
+    <div id="bg-grey" class="bg-grey d-none1" onclick="closeBigCard()">
+        <div id="card-container" class="card-container" onclick="event.stopPropagation()">
+            <div id="big-card-top" class="big-card-top"></div>
+            <div id="big-card-bottom" class="big-card-bottom">
+                <div class="card-bottom-nav">
+                    <span class="info-text" onclick="showInfo()">Info</span><span class="stats-text"
+                        onclick="showStats()">Stats</span>
+                </div>
+                <table class="info-table">
+                    <tbody id="info-body">
+                        <tr>
+                            <td>Species:</td>
+                            <td id="card-bottom-species"></td>
+                        </tr>
+                        <tr>
+                            <td>Abilities:</td>
+                            <td id="card-bottom-ability"></td>
+                        </tr>
+                        <tr>
+                            <td>Habitat:</td>
+                            <td id="card-bottom-habitat"></td>
+                        </tr>
+                        <tr>
+                            <td>Weight:</td>
+                            <td id="card-bottom-height">weight_data</td>
+                        </tr>
+                        <tr>
+                            <td>Height:</td>
+                            <td id="card-bottom-weight">height_data</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="info-table">
+                    <tbody id="stat-body" class="d-none">
+                        <tr>
+                            <td>HP:</td>
+                            <td id="stat-bottom-HP"></td>
+                            <td>
+                                <div class="progress">
+                                    <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="75"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Attack:</td>
+                            <td id="stat-bottom-attack"></td>
+                            <td>
+                                <div class="progress">
+                                    <div id="progress-bar-attack" class="progress-bar attack-color" role="progressbar"
+                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Defence:</td>
+                            <td id="stat-bottom-defence"></td>
+                            <td>
+                                <div class="progress">
+                                    <div id="progress-bar-defence" class="progress-bar defence-color" role="progressbar"
+                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Sp Attack:</td>
+                            <td id="stat-bottom-Sp-Attack"></td>
+                            <td>
+                                <div class="progress">
+                                    <div id="progress-bar-Sp-Attack" class="progress-bar Sp-Attack-color"
+                                        role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Sp Defence:</td>
+                            <td id="stat-bottom-Sp-Defence"></td>
+                            <td>
+                                <div class="progress">
+                                    <div id="progress-bar-Sp-Defence" class="progress-bar SP-Defence-color"
+                                        role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Speed:</td>
+                            <td id="stat-bottom-speed"></td>
+                            <td>
+                                <div class="progress">
+                                    <div id="progress-bar-speed" class="progress-bar speed" role="progressbar"
+                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+
+.main {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(232, 233, 238);
+
+}
+.pokedex-menu {
+    display: flex;
+    flex-wrap: wrap;
+    width: 660px;
+    height: 90vh;
+    background-color: rgb(246, 248, 248);
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-right: 40px;
+    border-radius: 40px;
+}
+
+#pokedex{
+    height: 40vh;
+    background-color: #FB6C6C;
+    color: white;
+    padding: 24px;
+    width: 500px;
+    margin-top: 40px;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
+}
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+#pokemonPic {
+    width: 400px;
+    height: 400px;
+    margin-top: -348px;
+    margin-left: 103px;
+}
+#pokemonPicMenu {
+    width: 100px;
+    height: 100px;
+}
+.info-container{
+    background-color: white;
+    border-radius: 40px;
+    margin-top: -40px;
+    margin-bottom: 40px;
+    height: 49vh;
+    width: 548px;
+}
+.Card-title {
+    display: flex;
+    justify-content: space-between;
+    width: 484px
+}
+#Id-Number {
+    margin-top: 32px;
+    font-size: 20px;
+}
+.type-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    Height: 30px;
+    background-color: #f88383;
+    border-radius: 15px;
+}
+.Poke-thumb {
+    height:150px;
+    width: 250px;
+    background-color: aquamarine;
+    border-radius: 20px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-top: 40px;
+}
+#pokeThumbTitle {
+    color: white;
+    padding-left: 20px;
+    margin: 5px;
+}
+#type-bg-menu {
+    color: white
+}
+.type-add-attr{
+    background-color: aqua;
+    width: 75px;
+    height: 25px;
+}
+.pokeThumbContent {
+    display: flex;
+    justify-content: space-around;
+}

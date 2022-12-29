@@ -29,6 +29,8 @@ let pokemon_start = 1;
 let pokemon_stop = 20;
 
 
+
+
 async function loadPokemons() {
 
     for (let i = pokemon_start; i <= pokemon_stop; i++) {
@@ -54,11 +56,13 @@ async function loadPokemons() {
     pokemon_stop += 20;
 }
 
+
 function sortPokemons1() {
     allPokemons.sort(function(a, b) {
         return a.id - b.id;
     });
 }
+
 
 function sortPokemons2() {
     allPokemons2.sort(function(a, b) {
@@ -92,9 +96,10 @@ function selectPokemon(i, name, img, type){
     //myPokemon is then a JSON with all details for the current Pokemon
     let myPokemon = allPokemons.find(p => p.id == i)
     let myPokemon2 = allPokemons2.find(p => p.id == i)
-    showBigCard(i, name, img, type, myPokemon, myPokemon2 )
-    
-}        
+    showBigCard(i, name, img, type, myPokemon, myPokemon2 )  
+} 
+
+
 //render all elements of selected "Big card"
 function showBigCard(i, name, img, type, myPokemon, myPokemon2) {
     //load html snipet
@@ -110,8 +115,8 @@ function showBigCard(i, name, img, type, myPokemon, myPokemon2) {
     //gray out background
     document.getElementById('bg-grey').classList.remove('d-none1');
     //console.log('type', type);
-
 }
+
 
 function renderBigCardInfo(myPokemon, myPokemon2){
     let abilities = myPokemon['abilities'][0]['ability']['name'];
@@ -129,6 +134,7 @@ function renderBigCardInfo(myPokemon, myPokemon2){
     document.getElementById('card-bottom-species').innerHTML = `${species}`;
 }
 
+
 function renderBigCardStatNumbers(myPokemon) {
     let HP = myPokemon['stats'][0]['base_stat'];
     let attack = myPokemon['stats'][1]['base_stat'];
@@ -144,6 +150,7 @@ function renderBigCardStatNumbers(myPokemon) {
     document.getElementById('stat-bottom-Sp-Defence').innerHTML = `${spec_def}`;
     document.getElementById('stat-bottom-speed').innerHTML = `${speed}`;
 }
+
 
 function renderBigCardProgressBars(myPokemon){
     let HP = myPokemon['stats'][0]['base_stat'];
@@ -161,17 +168,20 @@ function renderBigCardProgressBars(myPokemon){
     document.getElementById('progress-bar-speed').style = `width: ${speed}%;`;
 }
 
+
 function showInfo() {
     //toggle between info and stats
     document.getElementById('info-body').classList.remove('d-none');
     document.getElementById('stat-body').classList.add('d-none');
 }
 
+
 function showStats() {
     //toggle between stats and info
     document.getElementById('info-body').classList.add('d-none');
     document.getElementById('stat-body').classList.remove('d-none');
 }
+
 
 function closeBigCard() {
     document.getElementById('bg-grey').classList.add('d-none1');
@@ -194,6 +204,7 @@ return /*html*/`
 </div>`
 }
 
+
 function BigCardHtmlSnipet(i, name, img, type){
     return /*html*/`<img src="./img/arrow-left.svg" class="back-arrow" onclick="closeBigCard()">
     <div class="P-title-div">
@@ -207,16 +218,23 @@ function BigCardHtmlSnipet(i, name, img, type){
     </div>`
 }
 
-function filterPokemons(event) {
+
+function filterPokemons(event, search) {
     //search input and button from bootstrap is inside a form thus prevent default function
     event.preventDefault();
     //get search value from input
-    let search = document.getElementById('search').value;
+    search = document.getElementById('search').value;
     search = search.toLowerCase();
     //empty all mini cards from main container div
     let searched = document.getElementById('allPokemons');
     searched.innerHTML = '';
 
+    showSearchResults(search);
+ 
+}
+
+
+function showSearchResults(search){
     for (let i = 0; i < allPokemons.length; i++) {
         let result = allPokemons[i];
     
